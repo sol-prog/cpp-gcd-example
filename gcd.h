@@ -3,9 +3,9 @@
 constexpr int gcd_iterative(int a, int b);
 constexpr int gcd_recursive(int a, int b);
 
-static inline constexpr int euclid_gcd_iterative(int a, int b);
-static constexpr int euclid_gcd_recursive(int a, int b);
-static inline constexpr void swap(int &a, int &b);
+constexpr int euclid_gcd_iterative(int a, int b);
+constexpr int euclid_gcd_recursive(int a, int b);
+constexpr void swap(int &a, int &b);
 
 // Calculate the gcd of two integers using an iterative implementation of Euclid's algorithm
 constexpr int gcd_iterative(int a, int b) {
@@ -22,7 +22,7 @@ constexpr int gcd_iterative(int a, int b) {
     return euclid_gcd_iterative(a, b);
 }
 
-static inline constexpr int euclid_gcd_iterative(int a, int b) {
+constexpr int euclid_gcd_iterative(int a, int b) {
     while(a > 0) {
         if(a < b) {
             swap(a, b);
@@ -47,7 +47,7 @@ constexpr int gcd_recursive(int a, int b) {
     return euclid_gcd_recursive(a, b);
 }
 
-static constexpr int euclid_gcd_recursive(int a, int b) {
+constexpr int euclid_gcd_recursive(int a, int b) {
     if(a > 0) {
         if(a < b) {
             swap(a, b);
@@ -57,7 +57,7 @@ static constexpr int euclid_gcd_recursive(int a, int b) {
     return b;
 }
 
-static inline constexpr void swap(int &a, int &b) {
+constexpr void swap(int &a, int &b) {
     int tmp = a;
     a = b;
     b = tmp;
