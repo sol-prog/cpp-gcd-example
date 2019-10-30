@@ -1,25 +1,35 @@
-#include "gcd.h"
+// Calculate the gcd of a collection of numbers, e.g. {3, 9, 21}
+/*
+- Example:
+    gcd(3, 9, 21):
+    gcd(3, 9) = 3;
+    gcd(gcd(3, 9), 21) = gcd(3, 21) = 3
+*/
 
-#include <iostream>
+#include "gcd.h"
 #include <vector>
 #include <stdexcept>
+#include <iostream>
+#include <cassert>
 
-int gcd(const std::vector<int> &V) {
+int gcd_group(const std::vector<int> &V) {
     if(V.size() < 2) {
-        throw std::runtime_error("Error! Input vector must have at least 2 elements");
+        throw std::runtime_error("Error! The input vector must have at least 2 elements!");
     }
-
     int gcd_tmp{};
     for(const auto &elem : V) {
-        gcd_tmp = gcd_iterative(gcd_tmp, elem);
+        gcd_tmp = gcd(gcd_tmp, elem);
     }
     return gcd_tmp;
 }
 
 int main() {
-    std::vector V{15, 9, 21};
-    std::cout << "gcd(V) = " << gcd(V) << " Expected 3!\n";
+    std::vector<int> V{3, 9, 21};
+    assert(gcd_group(V) == 3);
 
-    V.emplace_back(-17);
-    std::cout << "gcd(V) = " << gcd(V) << " Expected 1!\n";
+    std::vector<int> V2{-3, 15};
+    assert(gcd_group(V2) == 3);
+
+    std::vector<int> V3{8};
+    assert(gcd_group(V3) == -1);
 }
