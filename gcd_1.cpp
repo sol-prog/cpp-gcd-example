@@ -48,7 +48,7 @@ constexpr int gcd_recursive(int a, int b) {
 constexpr int euclid_gcd_recursive(int a, int b) {
     if(a > 0) {
         if(a < b) {
-            swap(a, b);
+            return gcd_euclid_recursive(b - a, a);
         }
         return euclid_gcd_recursive(a - b, b);
     }
